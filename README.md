@@ -1,5 +1,12 @@
 # CDA《商业数据分析》Python 实验仓库
 
+![License](https://img.shields.io/github/license/heee-a/cda-business-data-analysis)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![CDA](https://img.shields.io/badge/CDA-Level%201--4-2ea44f)
+![Repo Size](https://img.shields.io/github/repo-size/heee-a/cda-business-data-analysis)
+
+> 开源地址：GitHub https://github.com/heee-a/cda-business-data-analysis ｜ Gitee 同步中
+
 本仓库是 **CDA（Certified Data Analyst）数据分析师认证教材《商业数据分析》** 全部实验内容的 Python 复现与迁移工程。
 
 教材原始配套实验分别用 **Excel / Power BI** 和 **Jupyter Notebook（Python）** 实现。本项目按教材要求完成两件事：
