@@ -43,7 +43,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 18 个脚本，均已在本地验证可运行并产出图表。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 20 个脚本，均已在本地验证可运行并产出图表。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -60,6 +60,7 @@ cda-business-data-analysis/
 | `09_composition_analysis.py` | 构成分析 | 饼图 + 百分比柱图 |
 | `10_distribution_analysis.py` | 分布分析 | 直方图 + 箱线图 |
 | `11_relationship_analysis.py` | 关系分析 | 分组柱 + 散点 |
+| `12_retail_sales_case.py` | 综合案例·服装零售 | 多维数据市集上的趋势、店铺对比/坪效、会员贡献、品类/颜色构成、折扣分析 |
 
 ### 第1章 · 数据模型（`ch01_data_model/`）
 
@@ -79,6 +80,7 @@ cda-business-data-analysis/
 ### 第5章 · 业务分析案例（`ch05_business_analysis/`）
 
 - `01_attribution_analysis.py`：银行“贷款申请渠道归因分析”——各申请渠道占比（谁贡献最多）、各渠道月度趋势（结构漂移）、以及相邻季度**因素拆解**（把申请总量变化按比例归因到各渠道），是业务看板之外更进一步的诊断分析。
+- `02_bank_sales_analysis.py`：第5章 综合案例“银行产品多维销售分析”——品类/购买目的/获客渠道构成、客户画像（性别/年龄）、风险偏好-收益、家庭年收入-购买金额关系。
 
 ### 第10章 · 时间序列效应分解（`ch10_time_series_decomposition/`）
 
