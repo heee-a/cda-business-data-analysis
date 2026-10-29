@@ -24,8 +24,10 @@
 cda-business-data-analysis/
 ├── level1_excel_to_python/        # 一级教材：Excel/PowerBI 实验的 Python 迁移（全新重写）
 │   ├── common.py                  # 公共工具：中文字体、路径、Excel 日期转换、存图
-│   ├── ch01_data_model/           # 第1章 关系/维度数据模型（银行零售关系模型演示）
+│   ├── ch01_data_model/           # 第1章 关系模型 + 维度(星型)模型
 │   ├── ch02_analysis_paradigms/   # 第2章 11 种分析范式（RFM、波士顿矩阵、漏斗…）
+│   ├── ch03_analysis_framework/   # 第3章 商业分析框架案例（收入趋势/财务费用/电商精准营销）
+│   ├── ch05_business_analysis/    # 第5章 业务分析案例（银行申请渠道归因分析）
 │   └── ch10_time_series_decomposition/  # 第10章 时间序列效应分解
 ├── level2_quant_strategy_python/  # 二级教材：量化策略分析（由 .ipynb 转换）
 ├── level3_agile_mining_python/    # 三级教材：敏捷数据挖掘（由 .ipynb 转换）
@@ -41,7 +43,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 13 个脚本，均已在本地验证可运行并产出图表。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 18 个脚本，均已在本地验证可运行并产出图表。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -61,8 +63,22 @@ cda-business-data-analysis/
 
 ### 第1章 · 数据模型（`ch01_data_model/`）
 
-`01_relational_model.py`：用捷克银行零售公开数据（district / clients / disp / accounts / loans / trans 六张表）演示**关系/维度模型**的价值——
-通过主键-外键 `merge`（等价于 Power BI 里拖出的关系线），把“事实表(交易/贷款)”与“维度表(地区)”打通，回答“哪个地区贷款需求最旺盛”这类跨表问题。
+- `01_relational_model.py`：用捷克银行零售公开数据（district / clients / disp / accounts / loans / trans 六张表）演示**关系模型**的价值——通过主键-外键 `merge`（等价于 Power BI 里拖出的关系线），把“事实表(交易/贷款)”与“维度表(地区)”打通，回答“哪个地区贷款需求最旺盛”这类跨表问题。
+- `02_dimension_model.py`：用“商场销售数据表”（品牌 / 类别 / 城市 / 日期 / 产品 / 销售事实六张表）演示**维度模型（星型 Schema）**——事实表只存“度量+外键”，维度交给维度表；脚本重建星型连接后，按城市 / 品牌 / 类别 / 时间做多维切片与钻取，等价于 Power BI 拖拽生成的可视化看板。
+
+### 第3章 · 商业数据分析框架案例（`ch03_analysis_framework/`）
+
+教材用“框架式分析”（先趋势、再构成、后对比）演示三个综合案例，本仓库逐一迁移：
+
+| 脚本 | 案例 | 分析框架 |
+|------|------|----------|
+| `01_revenue_trend.py` | 案例1 收入趋势分析 | 月度趋势+移动平均、省份构成、年际对比 |
+| `02_expense_analysis.py` | 案例2 财务费用分析 | 总费用趋势、三大期间费用构成、管理费用明细构成 |
+| `03_ecommerce_marketing.py` | 案例3 电商精准营销 | 月度趋势、年龄分布、支付/品类构成、轻量 RFM 人群分层 |
+
+### 第5章 · 业务分析案例（`ch05_business_analysis/`）
+
+- `01_attribution_analysis.py`：银行“贷款申请渠道归因分析”——各申请渠道占比（谁贡献最多）、各渠道月度趋势（结构漂移）、以及相邻季度**因素拆解**（把申请总量变化按比例归因到各渠道），是业务看板之外更进一步的诊断分析。
 
 ### 第10章 · 时间序列效应分解（`ch10_time_series_decomposition/`）
 
@@ -79,7 +95,7 @@ cda-business-data-analysis/
 
 ## Level 2 / 3 / 4：Jupyter Notebook → `.py`（由工具自动转换）
 
-`level2_quant_strategy_python/`、`level3_agile_mining_python/`、`level4_finance_cases_python/` 下共 **58 个** `.py` 文件，由教材配套的 `.ipynb` 经 `tools/nb_to_py.py` 转换而来：
+`level2_quant_strategy_python/`、`level3_agile_mining_python/`、`level4_finance_cases_python/` 下共 **57 个** `.py` 文件，由教材配套的 58 个 `.ipynb` 经 `tools/nb_to_py.py` 转换而来（已排除 1 个 Jupyter 自动保存的 `-checkpoint` 副本）：
 
 - Markdown 单元格 → `#` 注释，保留全部讲解；
 - 代码单元格 → 原样保留（magics 行自动注释）；

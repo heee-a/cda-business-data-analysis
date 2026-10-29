@@ -77,7 +77,7 @@ def main():
     hcol = "amount" if "amount" in hol.columns else hol.columns[1]
     ncol = "信用卡消费额" if "信用卡消费额" in nohol.columns else nohol.columns[1]
     h = pd.Series(hol[hcol].astype(float).values)
-    n = pd.Series(nhol[ncol].astype(float).values)
+    n = pd.Series(nohol[ncol].astype(float).values)
     dh = seasonal_decompose(h, model="additive", period=7)
     dn = seasonal_decompose(n, model="additive", period=7)
     fig, ax = plt.subplots(2, 1, figsize=(11, 7))
