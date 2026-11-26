@@ -38,6 +38,8 @@ cda-business-data-analysis/
 │   ├── ch08_sql_to_pandas/        # 第8章 SQL 基础（SQL → pandas 等价实现）
 │   ├── ch09_user_profile/         # 第9章 用户标签体系与画像（SQL/Excel → 标签工厂）
 │   ├── ch10_time_series_decomposition/  # 第10章 时间序列效应分解
+│   ├── ch11_data_governance/      # 第11章 DCMM 数据治理成熟度自评（规范 PDF → Python）
+│   ├── ch12_data_modeling/        # 第12章 维度模型质量检查（白皮书规范 → 校验器）
 │   └── ch13_data_standard/        # 第13章 指标数据标准治理（Excel 模板 → 质量校验）
 ├── level2_quant_strategy_python/  # 二级教材：量化策略分析（由 .ipynb 转换）
 ├── level3_agile_mining_python/    # 三级教材：敏捷数据挖掘（由 .ipynb 转换）
@@ -55,7 +57,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 32 个脚本，均已在本地验证可运行并产出结果。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 36 个脚本，均已在本地验证可运行并产出结果。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -73,6 +75,7 @@ cda-business-data-analysis/
 | `10_distribution_analysis.py` | 分布分析 | 直方图 + 箱线图 |
 | `11_relationship_analysis.py` | 关系分析 | 分组柱 + 散点 |
 | `12_retail_sales_case.py` | 综合案例·服装零售 | 多维数据市集上的趋势、店铺对比/坪效、会员贡献、品类/颜色构成、折扣分析 |
+| `13_sankey_flow.py` | 桑吉图（六类范式之六） | 页面流转流量：节点流入/流出/流失率、站点路径分解、matplotlib 贝塞尔流带绘制 |
 
 ### 第1章 · 数据模型（`ch01_data_model/`）
 
@@ -129,6 +132,16 @@ cda-business-data-analysis/
 | `ch10_ai_forecast/01_wps_ai_forecast.py` | WPS 自带 AI 时间序列预测（`.xlsx`） | 纯 numpy 手写 Holt-Winters 三参数指数平滑，网格搜索最优参数；复刻航空客流(144→24)与信用卡消费额(31→7)预测，与 WPS SARIMA 结果对比（信用卡 MAE≈1.28） |
 
 > 函数练习与预测所需数据已入库 `data/level1/{excel_func,forecast}/`；预测脚本不依赖 statsmodels，仅用 pandas/numpy/matplotlib 即可运行。
+
+### 标签体系、数据治理与维度建模规范（2026-11-26 补充）
+
+| 脚本 | 教材原实现 | Python 迁移要点 |
+|------|-----------|----------------|
+| `ch09_user_profile/02_tag_system_design.py` | 「营销类标签.xlsx」+「反欺诈特征列表.xlsx」 | 393 个标签值反向构建 86 个标签字典；取数逻辑覆盖率、字段类型/长度、取值-逻辑条数一致性校验；反欺诈原始/衍生特征与命名规律分析 |
+| `ch11_data_governance/01_dcmm_assessment.py` | 第11章 6 份规范 PDF（GB/T 36073-2018 DCMM 等） | 把标准 8 能力域/5 级模型落成自评工具：评分→域得分→总体等级→短板域→雷达图；替换 `data/level1/dcmm/scores.csv` 即可真实自评 |
+| `ch12_data_modeling/01_dimension_model_quality.py` | 第12章《阿里云数据中台零售数据模型白皮书》 | 事实表粒度唯一性、维表主键非空唯一、外键引用完整性、度量合法性、属性空值率、企业规模区间一致性 10 项检查 |
+
+> 校验发现教材模板的几处真实数据问题：标签体系 69.7% 的取值缺取数逻辑、2 条重复组合、「VARCAHR2」拼写错误；商场销售数据「小型」与「微型」企业规模都含「20-99人」区间交叉。这些均已由脚本识别并记录在输出报告中。
 
 > 运行方式（以第2章 RFM 为例）：
 > ```bash
