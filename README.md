@@ -30,6 +30,8 @@ cda-business-data-analysis/
 │   ├── ch02_hr_dashboard/         # 第2章 人力资源看板（员工结构/年龄司龄/离职率）
 │   ├── ch02_student_exam/         # 第2章 学生考试案例（三表关联/班级对比/排名）
 │   ├── ch02_sales_dashboard/      # 第2章 分省销售分析案例（事实×维度/品类/雇员业绩）
+│   ├── ch02_excel_functions/      # 第2章 Excel/WPS 函数练习（IF/COUNTIF/VLOOKUP/透视表…）
+│   ├── ch10_ai_forecast/          # 第10章 WPS-AI 预测复刻（Holt-Winters vs WPS SARIMA）
 │   ├── ch03_analysis_framework/   # 第3章 商业分析框架案例（收入趋势/财务费用/电商精准营销）
 │   ├── ch05_business_analysis/    # 第5章 业务分析案例（银行申请渠道归因分析）
 │   ├── ch07_metric_system/        # 第7章 指标体系构建（Excel 模板 → 指标字典 + 校验）
@@ -53,7 +55,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 29 个脚本，均已在本地验证可运行并产出结果。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 32 个脚本，均已在本地验证可运行并产出结果。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -118,6 +120,15 @@ cda-business-data-analysis/
 | `ch02_sales_dashboard/01_province_sales.py` | 分省销售分析 `.pbix` | 订单+明细+商品+类别+雇员数据市集；分省销售额、品类构成、雇员业绩、月度趋势 |
 
 > 这些案例的原始数据已从教材 XLSX / GBK CSV 统一转为 UTF-8 存入 `data/level1/{etl,hr,exam,sales_model,province_sales}/`；其中明细表列名「产口ID」为教材笔误，脚本中已纠正为「产品ID」。
+
+### Excel/WPS 函数练习 与 WPS-AI 预测（2026-11-26 补充）
+
+| 脚本 | 教材原实现 | Python 迁移要点 |
+|------|-----------|----------------|
+| `ch02_excel_functions/01_excel_functions_in_pandas.py` | Excel/WPS 函数练习表 | 数学/统计/日期/文本函数、IF+AND+OR、COUNTIF、VLOOKUP 精确/近似、INDEX+MATCH、数据透视表；IF 与出勤统计结果与教材答案逐条校验一致 |
+| `ch10_ai_forecast/01_wps_ai_forecast.py` | WPS 自带 AI 时间序列预测（`.xlsx`） | 纯 numpy 手写 Holt-Winters 三参数指数平滑，网格搜索最优参数；复刻航空客流(144→24)与信用卡消费额(31→7)预测，与 WPS SARIMA 结果对比（信用卡 MAE≈1.28） |
+
+> 函数练习与预测所需数据已入库 `data/level1/{excel_func,forecast}/`；预测脚本不依赖 statsmodels，仅用 pandas/numpy/matplotlib 即可运行。
 
 > 运行方式（以第2章 RFM 为例）：
 > ```bash
