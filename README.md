@@ -26,6 +26,10 @@ cda-business-data-analysis/
 │   ├── common.py                  # 公共工具：中文字体、路径、Excel 日期转换、存图
 │   ├── ch01_data_model/           # 第1章 关系模型 + 维度(星型)模型
 │   ├── ch02_analysis_paradigms/   # 第2章 11 种分析范式（RFM、波士顿矩阵、漏斗…）
+│   ├── ch02_etl_operations/       # 第2章 Power Query ETL（拆分列/清洗/横向+纵向合并）
+│   ├── ch02_hr_dashboard/         # 第2章 人力资源看板（员工结构/年龄司龄/离职率）
+│   ├── ch02_student_exam/         # 第2章 学生考试案例（三表关联/班级对比/排名）
+│   ├── ch02_sales_dashboard/      # 第2章 分省销售分析案例（事实×维度/品类/雇员业绩）
 │   ├── ch03_analysis_framework/   # 第3章 商业分析框架案例（收入趋势/财务费用/电商精准营销）
 │   ├── ch05_business_analysis/    # 第5章 业务分析案例（银行申请渠道归因分析）
 │   ├── ch07_metric_system/        # 第7章 指标体系构建（Excel 模板 → 指标字典 + 校验）
@@ -49,7 +53,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 24 个脚本，均已在本地验证可运行并产出结果。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 29 个脚本，均已在本地验证可运行并产出结果。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -72,6 +76,7 @@ cda-business-data-analysis/
 
 - `01_relational_model.py`：用捷克银行零售公开数据（district / clients / disp / accounts / loans / trans 六张表）演示**关系模型**的价值——通过主键-外键 `merge`（等价于 Power BI 里拖出的关系线），把“事实表(交易/贷款)”与“维度表(地区)”打通，回答“哪个地区贷款需求最旺盛”这类跨表问题。
 - `02_dimension_model.py`：用“商场销售数据表”（品牌 / 类别 / 城市 / 日期 / 产品 / 销售事实六张表）演示**维度模型（星型 Schema）**——事实表只存“度量+外键”，维度交给维度表；脚本重建星型连接后，按城市 / 品牌 / 类别 / 时间做多维切片与钻取，等价于 Power BI 拖拽生成的可视化看板。
+- `03_sales_star_schema.py`：用教材「创建数据模型示例」中的销售事实表 + 客户 / 城市 / 产品三张维表搭建**星型模型**，按区域 / 企业规模 / 产品系列多维汇总并做「区域 × 企业规模」交叉透视（对应 Power BI 关系视图 + 切片器联动）。
 
 ### 第3章 · 商业数据分析框架案例（`ch03_analysis_framework/`）
 
@@ -102,6 +107,17 @@ cda-business-data-analysis/
 | `ch13_data_standard/01_indicator_standard_governance.py` | Excel 指标数据标准模板 | 编号唯一性、派生指标公式、单位/类型一致性、维度编码规范性校验 |
 
 > 这四章的配套数据已入库（`data/level1/`）；运行结果在脚本的 `output/` 目录下，按仓库约定不纳入版本控制，运行脚本即可重新生成。
+
+### 第2章 · Power BI 基本操作 / 函数练习案例（2026-11-26 补充）
+
+| 脚本 | 教材原实现 | Python 迁移要点 |
+|------|-----------|----------------|
+| `ch02_etl_operations/01_powerquery_etl.py` | Power Query 拆分列 / 替换值 / 合并查询 / 追加查询 | `str.split+explode` 拆订单号到行；占位符与无效行清洗；学生×课程×选课三表合并；字段一致/不一致两种追加 |
+| `ch02_hr_dashboard/01_hr_dashboard.py` | 人力资源看板 `.pbix` + DAX 函数 | Excel 日期序列号转日期，算年龄/司龄；部门/学历/性别结构、在职离职率、职级画像与图表 |
+| `ch02_student_exam/01_student_exam_analysis.py` | 学生考试案例 `.pbix` | 学生+班主任+成绩三表关联；学科统计、班级均分与及格率、性别对比、总分排名 |
+| `ch02_sales_dashboard/01_province_sales.py` | 分省销售分析 `.pbix` | 订单+明细+商品+类别+雇员数据市集；分省销售额、品类构成、雇员业绩、月度趋势 |
+
+> 这些案例的原始数据已从教材 XLSX / GBK CSV 统一转为 UTF-8 存入 `data/level1/{etl,hr,exam,sales_model,province_sales}/`；其中明细表列名「产口ID」为教材笔误，脚本中已纠正为「产品ID」。
 
 > 运行方式（以第2章 RFM 为例）：
 > ```bash

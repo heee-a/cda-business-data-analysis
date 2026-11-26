@@ -36,7 +36,9 @@ def excel_serial_to_datetime(series):
     import pandas as pd
     if pd.api.types.is_datetime64_any_dtype(series):
         return series
-    return pd.to_datetime(series, unit="D", origin="1899-12-30", errors="coerce")
+    # CSV 读入时日期列常是字符串形式的 Excel 序列号，先强制转数值再按天解析
+    nums = pd.to_numeric(series, errors="coerce")
+    return pd.to_datetime(nums, unit="D", origin="1899-12-30", errors="coerce")
 
 
 def save_fig(fig, name, out_dir):
