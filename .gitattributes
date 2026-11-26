@@ -4,3 +4,6 @@
 # Git LFS：仅对超大文件启用，避免仓库体积膨胀、保证 clone 速度
 data/level1/datamodel/trans.csv filter=lfs diff=lfs merge=lfs -text
 data/level4/CreditBalance.csv filter=lfs diff=lfs merge=lfs -text
+
+# 教材原始资料（含 >100MB 视频与大数据集）全部走 Git LFS
+textbook_materials/** filter=lfs diff=lfs merge=lfs -text

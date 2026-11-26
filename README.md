@@ -37,6 +37,8 @@ cda-business-data-analysis/
 ├── level3_agile_mining_python/    # 三级教材：敏捷数据挖掘（由 .ipynb 转换）
 ├── level4_finance_cases_python/   # 四级教材：金融案例实战（由 .ipynb 转换）
 ├── data/                          # 各实验所用数据集（含 LFS 大文件）
+├── textbook_materials/            # 教材配套原始资料全量（4 部分 572 个文件，Git LFS）
+├── TEXTBOOK_MATERIALS_INDEX.md    # 教材素材索引（按部分/章节/文件类型）
 ├── tools/                         # 构建工具：notebook→py 转换、离线 wheel 下载等
 ├── requirements.txt
 ├── LICENSE
@@ -132,6 +134,14 @@ cda-business-data-analysis/
 | `convert_all_notebooks.py` | 批量从教材 zip 提取 notebook 并转换 + 抽取数据 |
 | `download_wheels.py` | 离线环境通过 curl 下载依赖 wheel（pip 被墙时的替代方案） |
 | `xlsx_inspect.py` | 标准库解析 xlsx，定位多表 sheet 的表头行 |
+
+---
+
+## 教材原始资料（`textbook_materials/`）
+
+仓库已完整收录百度网盘「CDA 教材资料2025」（提取码 CDAS）的全部内容：一级《商业数据分析》、二级《量化策略分析》、三级《敏捷数据挖掘》、四级《金融数据分析和数据挖掘案例实战》，共 572 个文件、约 1.20 GiB，包含 58 个原始 notebook、65 个 Excel 工作簿、92 个 Power BI 文件、25 份 PDF 规范/案例、132 份 CSV 与教学视频。
+
+由于包含超过 100 MB 的视频与大数据集，`textbook_materials/` 下所有文件均通过 **Git LFS** 存储；克隆时需安装 `git-lfs`，否则这些文件会显示为指针。完整章节清单见 [TEXTBOOK_MATERIALS_INDEX.md](TEXTBOOK_MATERIALS_INDEX.md)。
 
 ---
 
