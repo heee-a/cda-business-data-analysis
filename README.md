@@ -5,7 +5,7 @@
 ![CDA](https://img.shields.io/badge/CDA-Level%201--4-2ea44f)
 ![Repo Size](https://img.shields.io/github/repo-size/heee-a/cda-business-data-analysis)
 
-> 开源地址：GitHub https://github.com/heee-a/cda-business-data-analysis ｜ Gitee 同步中
+> 开源地址：GitHub https://github.com/heee-a/cda-business-data-analysis ｜ Gitee https://gitee.com/heee-a/cda-business-data-analysis （镜像待授权同步）
 
 本仓库是 **CDA（Certified Data Analyst）数据分析师认证教材《商业数据分析》** 全部实验内容的 Python 复现与迁移工程。
 
@@ -28,7 +28,11 @@ cda-business-data-analysis/
 │   ├── ch02_analysis_paradigms/   # 第2章 11 种分析范式（RFM、波士顿矩阵、漏斗…）
 │   ├── ch03_analysis_framework/   # 第3章 商业分析框架案例（收入趋势/财务费用/电商精准营销）
 │   ├── ch05_business_analysis/    # 第5章 业务分析案例（银行申请渠道归因分析）
-│   └── ch10_time_series_decomposition/  # 第10章 时间序列效应分解
+│   ├── ch07_metric_system/        # 第7章 指标体系构建（Excel 模板 → 指标字典 + 校验）
+│   ├── ch08_sql_to_pandas/        # 第8章 SQL 基础（SQL → pandas 等价实现）
+│   ├── ch09_user_profile/         # 第9章 用户标签体系与画像（SQL/Excel → 标签工厂）
+│   ├── ch10_time_series_decomposition/  # 第10章 时间序列效应分解
+│   └── ch13_data_standard/        # 第13章 指标数据标准治理（Excel 模板 → 质量校验）
 ├── level2_quant_strategy_python/  # 二级教材：量化策略分析（由 .ipynb 转换）
 ├── level3_agile_mining_python/    # 三级教材：敏捷数据挖掘（由 .ipynb 转换）
 ├── level4_finance_cases_python/   # 四级教材：金融案例实战（由 .ipynb 转换）
@@ -43,7 +47,7 @@ cda-business-data-analysis/
 
 ## Level 1：Excel / Power BI → Python 迁移（重点）
 
-这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 20 个脚本，均已在本地验证可运行并产出图表。
+这部分不是简单的“翻译”，而是**理解实验内涵后用 Python 重做**，共 24 个脚本，均已在本地验证可运行并产出结果。
 
 ### 第2章 · 11 种数据分析范式（`ch02_analysis_paradigms/`）
 
@@ -85,6 +89,17 @@ cda-business-data-analysis/
 ### 第10章 · 时间序列效应分解（`ch10_time_series_decomposition/`）
 
 `01_effect_decomposition.py`：对航空客流、信用卡消费额做 `statsmodels` 乘法/加法分解（趋势+季节+不规则），并手工计算季节指数。
+
+### 第7、8、9、13 章 · 新增补充实验（2026-11-26）
+
+| 脚本 | 教材原实现 | Python 迁移要点 |
+|------|-----------|----------------|
+| `ch07_metric_system/01_metric_system_design.py` | Excel 指标体系设计模板 | 指标字典化、依赖链还原、口径校验；发现「通过用户数」命名不一致、「合同结清数」缺失等问题 |
+| `ch08_sql_to_pandas/01_sql_fundamentals_in_pandas.py` | MySQL SQL 脚本 | 9 类 SQL（选择/过滤/重编码/分组/连接/子查询/集合/视图）逐一用 pandas 复现，输出 15 张结果表 |
+| `ch09_user_profile/01_customer_profile_tags.py` | SQL + Excel 信用卡客户画像 | 7 张关系表按客户聚合后打 8 类标签，生成 5,369 位客户的画像宽表 |
+| `ch13_data_standard/01_indicator_standard_governance.py` | Excel 指标数据标准模板 | 编号唯一性、派生指标公式、单位/类型一致性、维度编码规范性校验 |
+
+> 这四章的配套数据与运行结果已一并入库（`data/level1/` 与各脚本的 `output/`），可直接复现。
 
 > 运行方式（以第2章 RFM 为例）：
 > ```bash
