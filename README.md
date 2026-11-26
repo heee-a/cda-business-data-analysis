@@ -99,7 +99,7 @@ cda-business-data-analysis/
 | `ch09_user_profile/01_customer_profile_tags.py` | SQL + Excel 信用卡客户画像 | 7 张关系表按客户聚合后打 8 类标签，生成 5,369 位客户的画像宽表 |
 | `ch13_data_standard/01_indicator_standard_governance.py` | Excel 指标数据标准模板 | 编号唯一性、派生指标公式、单位/类型一致性、维度编码规范性校验 |
 
-> 这四章的配套数据与运行结果已一并入库（`data/level1/` 与各脚本的 `output/`），可直接复现。
+> 这四章的配套数据已入库（`data/level1/`）；运行结果在脚本的 `output/` 目录下，按仓库约定不纳入版本控制，运行脚本即可重新生成。
 
 > 运行方式（以第2章 RFM 为例）：
 > ```bash
